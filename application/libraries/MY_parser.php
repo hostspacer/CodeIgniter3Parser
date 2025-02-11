@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Extended Parser Class
  *
- * @package		CodeIgniter
+ * @package	CodeIgniter
  * @subpackage	Libraries
  * @category	Parser
  * @author	Shivasis Biswal
@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Parser extends CI_Parser {
 	
 	// Define supported filters
-    protected $filters = [];														  
+    	protected $filters = [];														  
 	private $blocks = [];
 	private $block_stack = [];
 	private $template_data = [];													  
