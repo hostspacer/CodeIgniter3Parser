@@ -135,6 +135,46 @@ When index.html is parsed, it will extend base.html and replace the title and co
 </html>
 
 
+Example Usage
+
+With the MY_Parser class, you can now use blocks and extends in your templates:
+
+Base Template (base.php):
+<!-- base.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Default Title{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <p>This is the default content.</p>
+    {% endblock %}
+</body>
+</html>
+
+Child Template (index.php):
+<!-- index.php -->
+{% extend:base.php %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<p>This is the main content of the home page.</p>
+{% endblock %}
+
+When index.php is parsed, it will extend base.php and replace the title and content blocks with its own content, resulting in the following output:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <p>This is the main content of the home page.</p>
+</body>
+</html>
+
+
+
+
 
 Caching
 Enable caching to improve performance:
