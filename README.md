@@ -362,10 +362,12 @@ Enable caching to improve performance:
 
 ```php
 $this->my_parser->enable_cache(TRUE);
----
+```
+
 
 Security
 Sanitize input data to prevent injection attacks:
+
 ```php
 $data = [
     'title' => 'Welcome to My Site',
@@ -373,6 +375,7 @@ $data = [
 ];
 $this->my_parser->sanitize_input($data);
 ```
+
 
 ##Contributing
 
