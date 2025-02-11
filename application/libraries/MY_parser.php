@@ -355,8 +355,7 @@ class MY_Parser extends CI_Parser {
 			
 			// $pattern = '/' . $left . '\s*' . preg_quote($key, '/') . '\s*' . $right . '/';	
 			// Pattern to match variable with filters, e.g., {key|upper|lower} with optional spaces
-    		 $pattern = '/' . $left . '\s*' . preg_quote($key, '/') . '\s*(?:\|\s*([\w|\s:,-]*)\s*)?' . $right . '/';
-
+    		 	$pattern = '/' . $left . '\s*' . preg_quote($key, '/') . '\s*(?:\|\s*([\w|\-:,]+)\s*)?' . '\s*' . $right . '/';
 
 			// Callback to apply filters
 			$callback = function ($matches) use ($val) {
