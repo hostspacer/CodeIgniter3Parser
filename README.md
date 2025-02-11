@@ -173,6 +173,99 @@ When index.php is parsed, it will extend base.php and replace the title and cont
 </html>
 
 
+Loops Example
+Loops allow you to iterate over arrays and display their contents dynamically. Here's how you can use loops in your templates:
+<!-- template_with_loop.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+</head>
+<body>
+    <h1>{site_name}</h1>
+    <ul>
+        {% loop items %}
+        <li>{name} - {price}</li>
+        {% endloop %}
+    </ul>
+</body>
+</html>
+
+Data for Loop Example
+$data = [
+    'title' => 'Product List',
+    'site_name' => 'My E-commerce Site',
+    'items' => [
+        ['name' => 'Product 1', 'price' => '$10'],
+        ['name' => 'Product 2', 'price' => '$20'],
+        ['name' => 'Product 3', 'price' => '$30']
+    ]
+];
+
+$this->my_parser->parse('template_with_loop', $data);
+
+Expected Output
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+    <h1>My E-commerce Site</h1>
+    <ul>
+        <li>Product 1 - $10</li>
+        <li>Product 2 - $20</li>
+        <li>Product 3 - $30</li>
+    </ul>
+</body>
+</html>
+
+Conditionals Example (if, elseif)
+Conditionals allow you to display content based on certain conditions. Here's how you can use conditionals in your templates:
+
+<!-- template_with_conditionals.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+</head>
+<body>
+    <h1>{site_name}</h1>
+    {% if is_logged_in %}
+    <p>Welcome back, {user_name}!</p>
+    {% else %}
+    <p>Please log in to continue.</p>
+    {% endif %}
+</body>
+</html>
+
+Data for Conditionals Example
+$data = [
+    'title' => 'User Dashboard',
+    'site_name' => 'My E-commerce Site',
+    'is_logged_in' => true,
+    'user_name' => 'Jane Doe'
+];
+$this->my_parser->parse('template_with_conditionals', $data);
+
+Expected Output
+When is_logged_in is true:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>My E-commerce Site</h1>
+    <p>Welcome back, Jane Doe!</p>
+</body>
+</html>
+
 
 
 
