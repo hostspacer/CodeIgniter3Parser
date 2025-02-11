@@ -76,6 +76,66 @@ Include partial templates or extend base templates:
 {% include:header %}
 {% extend:base %}
 
+Example for Include:
+
+Assume you have a common header file header.html:
+<!-- header.html -->
+<header>
+    <h1>Welcome to My Website</h1>
+</header>
+
+And a main template file index.html:
+<!-- index.html -->
+{% include:header.html %}
+<main>
+    <p>This is the main content of the page.</p>
+</main>
+
+When index.html is parsed, it will include the content of header.html, resulting in the following output:
+<header>
+    <h1>Welcome to My Website</h1>
+</header>
+<main>
+    <p>This is the main content of the page.</p>
+</main>
+
+Example for Extend:
+
+Assume you have a base layout file base.html:
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Default Title{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <p>This is the default content.</p>
+    {% endblock %}
+</body>
+</html>
+
+And a child template file index.html:
+<!-- index.html -->
+{% extend:base.html %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<p>This is the main content of the home page.</p>
+{% endblock %}
+
+When index.html is parsed, it will extend base.html and replace the title and content blocks with its own content, resulting in the following output:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <p>This is the main content of the home page.</p>
+</body>
+</html>
+
+
+
 Caching
 Enable caching to improve performance:
 
