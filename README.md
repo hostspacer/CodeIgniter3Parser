@@ -23,19 +23,19 @@ $this->load->library('parser', 'MY_Parser');
 -Also you can load
 $this->load->library('parser', 'my_parser');
 
-Usage
-Set Data
+## Usage
+**Set Data
 Use the set_data method to set dynamic data that can be used across multiple templates.
 $this->my_parser->set_data([
     'site_name' => 'My Awesome Site',
     'year' => date('Y')
 ]);
 
-Assign Variables
+**Assign Variables
 Use the assign method to assign individual variables.
 $this->my_parser->assign('author', 'Shivasis Biswal');
 
-Parse Template
+**Parse Template
 Use the parse method to parse a template with the assigned data.
 $data = [
     'title' => 'Welcome to My Site',
@@ -44,7 +44,7 @@ $data = [
 
 $this->my_parser->parse('template_name', $data);
 
-Custom Filters
+**Custom Filters
 Define and use custom filters in your templates. Example usage:
 {created_at|date:d-m-Y}
 
@@ -111,20 +111,20 @@ Example Template
 </body>
 </html>
 
-Block Support
+**Block Support
 Define and use blocks within your templates:
 
 {% block content %}
 <p>This is a block of content.</p>
 {% endblock %}
 
-Includes and Extends
+**Includes and Extends
 Include partial templates or extend base templates:
 
 {% include:header %}
 {% extend:base %}
 
-Example for Include:
+**Example for Include:
 
 Assume you have a common header file header.html:
 <!-- header.html -->
@@ -147,7 +147,7 @@ When index.html is parsed, it will include the content of header.html, resulting
     <p>This is the main content of the page.</p>
 </main>
 
-Example for Extend:
+**Example for Extend:
 
 Assume you have a base layout file base.html:
 <!-- base.html -->
@@ -221,7 +221,7 @@ When index.php is parsed, it will extend base.php and replace the title and cont
 </html>
 
 
-Loops Example
+**Loops Example
 Loops allow you to iterate over arrays and display their contents dynamically. Here's how you can use loops in your templates:
 <!-- template_with_loop.php -->
 <!DOCTYPE html>
@@ -270,7 +270,7 @@ Expected Output
 </body>
 </html>
 
-Conditionals Example (if, elseif)
+**Conditionals Example (if, elseif)
 Conditionals allow you to display content based on certain conditions. Here's how you can use conditionals in your templates:
 
 <!-- template_with_conditionals.php -->
@@ -317,12 +317,12 @@ When is_logged_in is true:
 
 
 
-Caching
+**Caching
 Enable caching to improve performance:
 
 $this->my_parser->enable_cache(TRUE);
 
-Security
+**Security
 Sanitize input data to prevent injection attacks:
 
 $data = [
@@ -331,7 +331,7 @@ $data = [
 ];
 $this->my_parser->sanitize_input($data);
 
-Contributing
+##Contributing
 
 Feel free to submit pull requests or report issues. Contributions are welcome!
 License
