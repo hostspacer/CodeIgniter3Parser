@@ -40,22 +40,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Extended Parser Class
  *
- * @package	CodeIgniter
+ * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Parser
- * @author	Shivasis Biswal
- * @useful 	CodeIgniter v3.13
+ * @author		Shivasis Biswal
+ * @useful 		CodeIgniter v3.13
  */
 
 class MY_Parser extends CI_Parser {
 	
 	// Define supported filters
-    	protected $filters = [];														  
+    protected $filters = [];														  
 	private $blocks = [];
 	private $block_stack = [];
 	private $template_data = [];													  
 	private $plugins = [];
-	private $cache_enabled = TRUE;
+	private $cache_enabled = FALSE;
 
 
     public function __construct() {
@@ -110,7 +110,7 @@ class MY_Parser extends CI_Parser {
 		}
 		
 		// Merge passed data with the internal template data
-    		$data = array_merge($this->template_data, $data);
+    	$data = array_merge($this->template_data, $data);
 		
 		// Sanitize data before parsing
 		// $data = array_map([$this, 'sanitize_input'], $data);
@@ -355,7 +355,8 @@ class MY_Parser extends CI_Parser {
 			
 			// $pattern = '/' . $left . '\s*' . preg_quote($key, '/') . '\s*' . $right . '/';	
 			// Pattern to match variable with filters, e.g., {key|upper|lower} with optional spaces
-    		 	$pattern = '/' . $left . '\s*' . preg_quote($key, '/') . '\s*(?:\|\s*([\w|\-:,]+)\s*)?' . '\s*' . $right . '/';
+			$pattern = '/' . $left . '\s*' . preg_quote($key, '/') . '\s*(?:\|\s*([\w|\-:,]+)\s*)?' . '\s*' . $right . '/';
+
 
 			// Callback to apply filters
 			$callback = function ($matches) use ($val) {
@@ -393,38 +394,72 @@ class MY_Parser extends CI_Parser {
 		}
 		return $value;
 	}
-
 	
+
 	protected function _parse_pair($variable, $data, $string) {
 		$left = preg_quote($this->l_delim, '/');
 		$right = preg_quote($this->r_delim, '/');
 
-		// New pattern to support {% item in items %}
-		$new_pattern = '/' . $left . '\s*(\w+)\s+in\s+' . preg_quote($variable, '/') . '\s*' . $right . '(.*?)' 
-			. $left . '\s*end\s+' . preg_quote($variable, '/') . '\s*' . $right . '/s';
+		// Pattern for {% item in items(start, end) %}
+		$item_in_items_pattern = '/'
+			. $left . '\s*(\w+)\s+in\s+' . preg_quote($variable, '/') 
+			. '(?:\(\s*(\d+),\s*(\d+)\s*\))?\s*' . $right 
+			. '(.*?)' 
+			. $left . '\s*(?:end\s+' . preg_quote($variable, '/') . '|\/' . preg_quote($variable, '/') . ')\s*' . $right 
+			. '/s';
 
-		// Old pattern for backward compatibility
-		$old_pattern = '/' . $left . '\s*' . preg_quote($variable, '/') . '\s*' . $right . '(.*?)' 
-			. $left . '\s*\/' . preg_quote($variable, '/') . '\s*' . $right . '/s';
-
-		// Handle the new syntax first
-		if (preg_match($new_pattern, $string, $match)) {
-			$loop_variable = $match[1];  // The loop variable (e.g., "item")
-			$body = $match[2];           // The loop body
-			$result = $this->_process_pair_body($data, $body, $loop_variable);
-			return preg_replace($new_pattern, $result, $string, 1);
+		// Pattern for {% items(start, end) %}
+		$items_pattern = '/'
+			. $left . '\s*' . preg_quote($variable, '/') 
+			. '(?:\(\s*(\d+),\s*(\d+)\s*\))?\s*' . $right 
+			. '(.*?)' 
+			. $left . '\s*(?:end\s+' . preg_quote($variable, '/') . '|\/' . preg_quote($variable, '/') . ')\s*' . $right 
+			. '/s';
+		
+		// Handle the new pattern {% item in items(start, end) %}
+		if (preg_match($item_in_items_pattern, $string, $matches)) {
+			$result = $this->_process_pair_match($matches, $data, true); // true indicates new pattern
+			return preg_replace($item_in_items_pattern, $result, $string, 1);
 		}
 
-		// Handle the old syntax
-		if (preg_match($old_pattern, $string, $match)) {
-			$body = $match[1];  // The loop body
-			$result = $this->_process_pair_body($data, $body);
-			return preg_replace($old_pattern, $result, $string, 1);
+		// Handle the old pattern {% items(start, end) %}
+		if (preg_match($items_pattern, $string, $matches)) {
+			$result = $this->_process_pair_match($matches, $data, false); // false indicates old pattern
+			return preg_replace($items_pattern, $result, $string, 1);
 		}
 
+		// If no match, return the original string
 		return $string;
 	}
+	
+	protected function _process_pair_match($matches, $data, $is_new_pattern = false) {
+			// Extract start, end, and body based on the pattern
+			if ($is_new_pattern) {
+				// For item_in_items_pattern
+				$loop_variable = $matches[1]; // The loop variable (e.g., "item")
+				$start = isset($matches[2]) && $matches[2] !== '' ? (int)$matches[2] : null;
+				$end = isset($matches[3]) && $matches[3] !== '' ? (int)$matches[3] : null;
+				$body = $matches[4]; // The loop body
+			} else {
+				// For items_pattern
+				$loop_variable = null; // No loop variable in the old pattern
+				$start = isset($matches[1]) && $matches[1] !== '' ? (int)$matches[1] : null;
+				$end = isset($matches[2]) && $matches[2] !== '' ? (int)$matches[2] : null;
+				$body = $matches[3]; // The loop body
+			}
 
+			// Handle range(start, end) only if both start and end are provided
+			if ($start !== null && $end !== null && is_array($data)) {
+				$start = max(1, $start); // Ensure start is at least 1
+				$end = min(count($data), $end); // Ensure end does not exceed data length
+				$data = array_slice($data, $start - 1, $end - $start + 1);
+			}
+
+			// Process the loop body
+			return $this->_process_pair_body($data, $body, $loop_variable);
+		}
+	
+	
 	protected function _process_pair_body($data, $body, $loop_variable = null) {
 		$str = '';
 		if (is_array($data) || is_object($data)) {
