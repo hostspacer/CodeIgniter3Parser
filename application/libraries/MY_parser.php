@@ -43,8 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Parser
- * @author		Shivasis Biswal
- * @useful 		CodeIgniter v3.13
+ * @author	Shivasis Biswal
+ * @useful 	CodeIgniter v3
  */
 
 class MY_Parser extends CI_Parser {
