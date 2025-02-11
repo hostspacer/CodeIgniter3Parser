@@ -57,6 +57,7 @@ $this->my_parser->parse('template_name', $data);
 Custom Filters 
 
 Define and use custom filters in your templates. 
+
 Example usage:
 
 ```{created_at|date:d-m-Y}```
@@ -64,12 +65,17 @@ Example usage:
 Upper
 
 Description: Converts text to uppercase. 
+
 Template Example: ```{title|upper}``` 
+
 Output: HELLO WORLD
 
 Lower 
+
 Description: Converts text to lowercase. 
+
 Template Example: ```{title|lower}``` 
+
 Output: hello world
 
 Capitalize
