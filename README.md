@@ -20,8 +20,14 @@ This is a custom parser class for CodeIgniter 3, extending the built-in parser t
 
 ```php
 $this->load->library('parser', 'MY_Parser');
--Also you can load
+```
+
+-- Also you can load by lowercase
+```php
 $this->load->library('parser', 'my_parser');
+```
+Set delimiters as you wish
+```php
 $this->my_parser->set_delimiters('{%', '%}');
 ```
 
