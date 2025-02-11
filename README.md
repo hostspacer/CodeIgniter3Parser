@@ -62,26 +62,14 @@ Example usage:
 
 ```{created_at|date:d-m-Y}```
 
-Upper
-
-Description: Converts text to uppercase. 
-
-Template Example: ```{title|upper}``` 
-
-Output: HELLO WORLD
+Upper 
+Description: Converts text to uppercase. Template Example: ```{title|upper}``` Output: HELLO WORLD
 
 Lower 
+Description: Converts text to lowercase. Template Example: ```{title|lower}``` Output: hello world
 
-Description: Converts text to lowercase. 
-
-Template Example: ```{title|lower}``` 
-
-Output: hello world
-
-Capitalize
-Description: Capitalizes the first letter of each word. 
-Template Example: ```{title|capitalize}``` 
-Output: Hello World
+Capitalize 
+Description: Capitalizes the first letter of each word. Template Example: ```{title|capitalize}``` Output: Hello World
 
 Trim
 Description: Trims whitespace from both ends. Template Example: ```{title|trim}``` Output: Hello World
