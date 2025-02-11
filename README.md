@@ -80,7 +80,7 @@ Md5
 Description: Returns the MD5 hash of the string. Template Example: {title|md5} Output: fc3ff98e8c6a0d3087d515c0473f8677
 
 nl2br
-Description: Converts newlines to <br> tags. Template Example: {description|nl2br} Output: Hello<br>World
+Description: Converts newlines to ```<br>``` tags. Template Example: {description|nl2br} Output: Hello<br>World
 
 Esc
 Description: Escapes HTML special characters. Template Example: {html_content|esc} Output: &lt;div&gt;Hello&lt;/div&gt;
@@ -137,7 +137,7 @@ Include partial templates or extend base templates:
 {% extend:base %}
 ```
 
-**Example for Include:
+Example for Include:
 
 Assume you have a common header file header.html:
 ```html
@@ -166,7 +166,7 @@ When index.html is parsed, it will include the content of header.html, resulting
 </main>
 ```
 
-**Example for Extend:
+Example for Extend:
 
 Assume you have a base layout file base.html:
 ```html
@@ -196,6 +196,7 @@ And a child template file index.html:
 ```
 
 When index.html is parsed, it will extend base.html and replace the title and content blocks with its own content, resulting in the following output:
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -205,13 +206,14 @@ When index.html is parsed, it will extend base.html and replace the title and co
     <p>This is the main content of the home page.</p>
 </body>
 </html>
-
+```
 
 Example Usage
 
 With the MY_Parser class, you can now use blocks and extends in your templates:
 
 Base Template (base.php):
+```html
 <!-- base.php -->
 <!DOCTYPE html>
 <html>
@@ -224,16 +226,20 @@ Base Template (base.php):
     {% endblock %}
 </body>
 </html>
+```
 
 Child Template (index.php):
+```html
 <!-- index.php -->
 {% extend:base.php %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
 <p>This is the main content of the home page.</p>
 {% endblock %}
+```
 
 When index.php is parsed, it will extend base.php and replace the title and content blocks with its own content, resulting in the following output:
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -243,10 +249,12 @@ When index.php is parsed, it will extend base.php and replace the title and cont
     <p>This is the main content of the home page.</p>
 </body>
 </html>
+```
 
 
-**Loops Example
+Loops Example
 Loops allow you to iterate over arrays and display their contents dynamically. Here's how you can use loops in your templates:
+```html
 <!-- template_with_loop.php -->
 <!DOCTYPE html>
 <html lang="en">
@@ -263,6 +271,7 @@ Loops allow you to iterate over arrays and display their contents dynamically. H
     </ul>
 </body>
 </html>
+```
 
 Data for Loop Example
 
@@ -281,6 +290,7 @@ $this->my_parser->parse('template_with_loop', $data);
 ```
 
 Expected Output
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -296,10 +306,11 @@ Expected Output
     </ul>
 </body>
 </html>
+```
 
 Conditionals Example (if, elseif)
 Conditionals allow you to display content based on certain conditions. Here's how you can use conditionals in your templates:
-
+```html
 <!-- template_with_conditionals.php -->
 <!DOCTYPE html>
 <html lang="en">
@@ -316,6 +327,7 @@ Conditionals allow you to display content based on certain conditions. Here's ho
     {% endif %}
 </body>
 </html>
+```
 
 Data for Conditionals Example
 ```php
@@ -331,6 +343,7 @@ $this->my_parser->parse('template_with_conditionals', $data);
 Expected Output
 When is_logged_in is true:
 
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,11 +355,14 @@ When is_logged_in is true:
     <p>Welcome back, Jane Doe!</p>
 </body>
 </html>
+```
 
 Caching
 Enable caching to improve performance:
 
+```php
 $this->my_parser->enable_cache(TRUE);
+---
 
 Security
 Sanitize input data to prevent injection attacks:
