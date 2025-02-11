@@ -22,81 +22,91 @@ This is a custom parser class for CodeIgniter 3, extending the built-in parser t
 $this->load->library('parser', 'MY_Parser');
 -Also you can load
 $this->load->library('parser', 'my_parser');
+```
 
 ## Usage
 **Set Data
 Use the set_data method to set dynamic data that can be used across multiple templates.
+
+```php
 $this->my_parser->set_data([
     'site_name' => 'My Awesome Site',
     'year' => date('Y')
 ]);
+```
 
 **Assign Variables
 Use the assign method to assign individual variables.
+
+```php
 $this->my_parser->assign('author', 'Shivasis Biswal');
+```
 
 **Parse Template
 Use the parse method to parse a template with the assigned data.
+
+```php
 $data = [
     'title' => 'Welcome to My Site',
     'created_at' => '2025-11-02 09:59:00'
 ];
-
 $this->my_parser->parse('template_name', $data);
+```
 
 **Custom Filters
 Define and use custom filters in your templates. Example usage:
 {created_at|date:d-m-Y}
 
-Upper
+*Upper
 Description: Converts text to uppercase. Template Example: {title|upper} Output: HELLO WORLD
 
-Lower
+*Lower
 Description: Converts text to lowercase. Template Example: {title|lower} Output: hello world
 
-Capitalize
+*Capitalize
 Description: Capitalizes the first letter of each word. Template Example: {title|capitalize} Output: Hello World
 
-Trim
+*Trim
 Description: Trims whitespace from both ends. Template Example: {title|trim} Output: Hello World
 
-Length
+*Length
 Description: Returns the length of the string. Template Example: {title|length} Output: 11
 
-Reverse
+*Reverse
 Description: Reverses the string. Template Example: {title|reverse} Output: dlroW olleH
 
-Md5
+*Md5
 Description: Returns the MD5 hash of the string. Template Example: {title|md5} Output: fc3ff98e8c6a0d3087d515c0473f8677
 
-nl2br
+*nl2br
 Description: Converts newlines to <br> tags. Template Example: {description|nl2br} Output: Hello<br>World
 
-Esc
+*Esc
 Description: Escapes HTML special characters. Template Example: {html_content|esc} Output: &lt;div&gt;Hello&lt;/div&gt;
 
-Absolute
+*Absolute
 Description: Converts to absolute value. Template Example: {number|absolute} Output: 42 (if number = -42)
 
-Round
+*Round
 Description: Rounds the number. Template Example: {number|round} Output: 3 (if number = 3.1415)
 
-Date
+*Date
 Description: Formats date according to the specified format. Template Example: {created_at|date:d-m-Y} Output: 02-11-2025
 
-Limit Chars
+*Limit Chars
 Description: Limits the string to a certain number of characters. Template Example: {title|limit_chars:5} Output: Hello (if title = Hello World)
 
-Limit Words
+*Limit Words
 Description: Limits the string to a certain number of words. Template Example: {title|limit_words:1} Output: Hello (if title = Hello World)
 
-Highlight
+*Highlight
 Description: Highlights the specified term. Template Example: {content|highlight:Hello} Output: <strong>Hello</strong> World
 
-Strip Tags
+*Strip Tags
 Description: Strips HTML tags. Template Example: {html_content|strip_tags} Output: Hello (if <div>Hello</div>)
 
-Example Template
+###Example Template
+```html
 <!-- template_name.php -->
 <!DOCTYPE html>
 <html lang="en">
@@ -110,6 +120,7 @@ Example Template
     <p>Author: {author}</p>
 </body>
 </html>
+```
 
 **Block Support
 Define and use blocks within your templates:
