@@ -19,12 +19,12 @@ This is a custom parser class for CodeIgniter 3, extending the built-in parser t
 2. **Load the Library**: Load the `MY_Parser` library in your CodeIgniter application.
 
 ```php
-$this->load->library('parser', 'MY_Parser');
+$this->load->library(['parser', 'MY_Parser']);
 ```
 
 -- Also you can load by lowercase
 ```php
-$this->load->library('parser', 'my_parser');
+$this->load->library(['parser', 'my_parser']);
 ```
 Set delimiters as you wish
 ```php
