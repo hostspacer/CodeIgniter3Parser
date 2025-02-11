@@ -56,55 +56,55 @@ $this->my_parser->parse('template_name', $data);
 
 Custom Filters
 Define and use custom filters in your templates. Example usage:
-{created_at|date:d-m-Y}
+```{created_at|date:d-m-Y}```
 
 Upper
-Description: Converts text to uppercase. Template Example: {title|upper} Output: HELLO WORLD
+Description: Converts text to uppercase. Template Example: ```{title|upper}``` Output: HELLO WORLD
 
 Lower
-Description: Converts text to lowercase. Template Example: {title|lower} Output: hello world
+Description: Converts text to lowercase. Template Example: ```{title|lower}``` Output: hello world
 
 Capitalize
-Description: Capitalizes the first letter of each word. Template Example: {title|capitalize} Output: Hello World
+Description: Capitalizes the first letter of each word. Template Example: ```{title|capitalize}``` Output: Hello World
 
 Trim
-Description: Trims whitespace from both ends. Template Example: {title|trim} Output: Hello World
+Description: Trims whitespace from both ends. Template Example: ```{title|trim}``` Output: Hello World
 
 Length
-Description: Returns the length of the string. Template Example: {title|length} Output: 11
+Description: Returns the length of the string. Template Example: ```{title|length}``` Output: 11
 
 Reverse
-Description: Reverses the string. Template Example: {title|reverse} Output: dlroW olleH
+Description: Reverses the string. Template Example: ```{title|reverse}``` Output: dlroW olleH
 
 Md5
-Description: Returns the MD5 hash of the string. Template Example: {title|md5} Output: fc3ff98e8c6a0d3087d515c0473f8677
+Description: Returns the MD5 hash of the string. Template Example: ```{title|md5}``` Output: fc3ff98e8c6a0d3087d515c0473f8677
 
 nl2br
-Description: Converts newlines to ```<br>``` tags. Template Example: {description|nl2br} Output: Hello<br>World
+Description: Converts newlines to ```<br>``` tags. Template Example: ```{description|nl2br}``` Output: Hello```<br>```World
 
 Esc
-Description: Escapes HTML special characters. Template Example: {html_content|esc} Output: &lt;div&gt;Hello&lt;/div&gt;
+Description: Escapes HTML special characters. Template Example: ```{html_content|esc}``` Output: &lt;div&gt;Hello&lt;/div&gt;
 
 Absolute
-Description: Converts to absolute value. Template Example: {number|absolute} Output: 42 (if number = -42)
+Description: Converts to absolute value. Template Example: ```{number|absolute}``` Output: 42 (if number = -42)
 
 Round
-Description: Rounds the number. Template Example: {number|round} Output: 3 (if number = 3.1415)
+Description: Rounds the number. Template Example: ```{number|round}``` Output: 3 (if number = 3.1415)
 
 Date
-Description: Formats date according to the specified format. Template Example: {created_at|date:d-m-Y} Output: 02-11-2025
+Description: Formats date according to the specified format. Template Example: ```{created_at|date:d-m-Y}``` Output: 02-11-2025
 
 Limit Chars
-Description: Limits the string to a certain number of characters. Template Example: {title|limit_chars:5} Output: Hello (if title = Hello World)
+Description: Limits the string to a certain number of characters. Template Example: ```{title|limit_chars:5}``` Output: Hello (if title = Hello World)
 
 Limit Words
-Description: Limits the string to a certain number of words. Template Example: {title|limit_words:1} Output: Hello (if title = Hello World)
+Description: Limits the string to a certain number of words. Template Example: ```{title|limit_words:1}``` Output: Hello (if title = Hello World)
 
 Highlight
-Description: Highlights the specified term. Template Example: {content|highlight:Hello} Output: <strong>Hello</strong> World
+Description: Highlights the specified term. Template Example: ```{content|highlight:Hello}``` Output: <strong>Hello</strong> World
 
 Strip Tags
-Description: Strips HTML tags. Template Example: {html_content|strip_tags} Output: Hello (if <div>Hello</div>)
+Description: Strips HTML tags. Template Example: ```{html_content|strip_tags}``` Output: Hello (if ```<div>Hello</div>```)
 
 Example Template
 ```html
