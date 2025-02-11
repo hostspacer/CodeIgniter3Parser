@@ -83,7 +83,7 @@ nl2br
 Description: Converts newlines to ```<br>``` tags. Template Example: ```{description|nl2br}``` Output: Hello```<br>```World
 
 Esc
-Description: Escapes HTML special characters. Template Example: ```{html_content|esc}``` Output: &lt;div&gt;Hello&lt;/div&gt;
+Description: Escapes HTML special characters. Template Example: ```{html_content|esc}``` Output: ```&lt;div&gt;Hello&lt;/div&gt;```
 
 Absolute
 Description: Converts to absolute value. Template Example: ```{number|absolute}``` Output: 42 (if number = -42)
