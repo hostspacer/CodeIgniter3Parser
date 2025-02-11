@@ -40,10 +40,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Extended Parser Class
  *
- * @package		CodeIgniter
+ * @package	CodeIgniter
  * @subpackage	Libraries
  * @category	Parser
- * @author	Shivasis Biswal
+ * @author(s)	Shivasis Biswal / Sasmita Biswal
  * @useful 	CodeIgniter v3
  */
 
