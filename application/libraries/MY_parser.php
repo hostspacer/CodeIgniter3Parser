@@ -110,10 +110,10 @@ class MY_Parser extends CI_Parser {
 		}
 		
 		// Merge passed data with the internal template data
-    	$data = array_merge($this->template_data, $data);
+    		$data = array_merge($this->template_data, $data);
 		
 		// Sanitize data before parsing
-		$data = array_map([$this, 'sanitize_input'], $data);
+		// $data = array_map([$this, 'sanitize_input'], $data);
 		
 		
 		// Cache key based on template and data
