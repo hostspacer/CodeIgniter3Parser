@@ -276,7 +276,7 @@ Loops allow you to iterate over arrays and display their contents dynamically. H
     <title>{% title %}</title>
 </head>
 <body>
-    <h1>{site_name}</h1>
+    <h1>{% site_name %}</h1>
     <ul>
         {% items %}
         <li>{% name %} - {% price %}</li>
