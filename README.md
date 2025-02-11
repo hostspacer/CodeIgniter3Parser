@@ -123,16 +123,18 @@ Example Template
 </html>
 ```
 
-Block Support
+#### Block Support
 Define and use blocks within your templates:
 ```html
 {% block content %}
 <p>This is a block of content.</p>
 {% endblock %}
+```
 
-Includes and Extends
+#### Includes and Extends
 Include partial templates or extend base templates:
 
+```html
 {% include:header %}
 {% extend:base %}
 ```
@@ -252,7 +254,7 @@ When index.php is parsed, it will extend base.php and replace the title and cont
 ```
 
 
-Loops Example
+#### Loops Example
 Loops allow you to iterate over arrays and display their contents dynamically. Here's how you can use loops in your templates:
 ```html
 <!-- template_with_loop.php -->
@@ -308,7 +310,7 @@ Expected Output
 </html>
 ```
 
-Conditionals Example (if, elseif)
+#### Conditionals Example (if, elseif)
 Conditionals allow you to display content based on certain conditions. Here's how you can use conditionals in your templates:
 ```html
 <!-- template_with_conditionals.php -->
@@ -357,7 +359,7 @@ When is_logged_in is true:
 </html>
 ```
 
-Caching
+#### Caching
 Enable caching to improve performance:
 
 ```php
@@ -365,7 +367,7 @@ $this->my_parser->enable_cache(TRUE);
 ```
 
 
-Security
+#### Security
 Sanitize input data to prevent injection attacks:
 
 ```php
@@ -377,7 +379,7 @@ $this->my_parser->sanitize_input($data);
 ```
 
 
-##Contributing
+## Contributing
 
 Feel free to submit pull requests or report issues. Contributions are welcome!
 License
