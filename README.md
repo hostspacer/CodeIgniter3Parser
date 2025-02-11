@@ -231,7 +231,7 @@ Base Template (base.php):
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Default Title{% endblock %}</title>
+    <title>{% block title %} Default Title {% endblock %}</title>
 </head>
 <body>
     {% block content %}
@@ -273,15 +273,40 @@ Loops allow you to iterate over arrays and display their contents dynamically. H
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{title}</title>
+    <title>{% title %}</title>
 </head>
 <body>
     <h1>{site_name}</h1>
     <ul>
-        {% loop items %}
-        <li>{name} - {price}</li>
-        {% endloop %}
+        {% items %}
+        <li>{% name %} - {% price %}</li>
+        {% /items %}
     </ul>
+    <ul>
+        {% items %}
+        <li>{% name %} - {% price %}</li>
+        {% end items %}
+    </ul>
+
+    <ul>
+        {% items(1,5) %}
+        <li>{% name %} - {% price %}</li>
+        {% end items %}
+    </ul>
+
+
+    <ul>
+        {% item in items %}
+        <li>{% item.name %} - {% item.price %}</li>
+        {% end items %}
+    </ul>
+
+    <ul>
+        {% item in items(1,5) %}
+        <li>{% item.name %} - {% item.price %}</li>
+        {% end items %}
+    </ul>
+
 </body>
 </html>
 ```
@@ -329,12 +354,14 @@ Conditionals allow you to display content based on certain conditions. Here's ho
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{title}</title>
+    <title>{% title %}</title>
 </head>
 <body>
-    <h1>{site_name}</h1>
+    <h1>{% site_name %}</h1>
     {% if is_logged_in %}
-    <p>Welcome back, {user_name}!</p>
+    <p>Welcome back, {% user_name %}!</p>
+    {% elseif is_user_active == 1 %}
+    <p>Welcome back, {% user_name %}! your account is active.</p>
     {% else %}
     <p>Please log in to continue.</p>
     {% endif %}
@@ -348,6 +375,7 @@ $data = [
     'title' => 'User Dashboard',
     'site_name' => 'My E-commerce Site',
     'is_logged_in' => true,
+    is_user_active' => 1,
     'user_name' => 'Jane Doe'
 ];
 $this->my_parser->parse('template_with_conditionals', $data);
