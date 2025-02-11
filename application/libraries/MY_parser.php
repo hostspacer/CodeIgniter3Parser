@@ -82,17 +82,18 @@ class MY_Parser extends CI_Parser {
             'highlight' => function($value, $term) {
                 return str_replace($term, "<strong>{$term}</strong>", $value);
             },
-			'date' => function($value, $format) {
-            return date($format, strtotime($value));
-			},
-			'date_modify' => function($value, $modify) {
+	    'date' => function($value, $format) { 
+		    return date($format, strtotime($value));
+	    },
+	'date_modify' => function($value, $modify) {
 				$date = new DateTime($value);
 				$date->modify($modify);
 				return $date->format('Y-m-d H:i:s');
-			},
-			'default' => function($value, $default) {
+	},
+	'default' => function($value, $default) {
 				return empty($value) ? $default : $value;
-			},
+	},
+	'strip_tags' => function($value, $allowed_tags = '') { return strip_tags($value, $allowed_tags); },
         ];
 		
     }
