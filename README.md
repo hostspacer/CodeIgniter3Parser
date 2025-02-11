@@ -323,8 +323,17 @@ $data = [
         ['name' => 'Product 3', 'price' => '$30']
     ]
 ];
-
 $this->my_parser->parse('template_with_loop', $data);
+
+$this->load->model('Product_model');
+$items = $this->Product_model->get_products();
+$data2 = [
+    'title' => 'Product List',
+    'site_name' => 'My E-commerce Site',
+    'items' => $items
+];
+$this->my_parser->parse('template_with_loop', $data2);
+
 ```
 
 Expected Output
