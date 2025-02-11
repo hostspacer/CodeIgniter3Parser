@@ -375,7 +375,7 @@ $data = [
     'title' => 'User Dashboard',
     'site_name' => 'My E-commerce Site',
     'is_logged_in' => true,
-    is_user_active' => 1,
+    'is_user_active' => 1,
     'user_name' => 'Jane Doe'
 ];
 $this->my_parser->parse('template_with_conditionals', $data);
