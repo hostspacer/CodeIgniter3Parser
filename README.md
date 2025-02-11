@@ -392,8 +392,9 @@ $this->my_parser->sanitize_input($data);
 
 ## Contributing
 
-Feel free to submit pull requests or report issues. Contributions are welcome!
-License
+Feel free to submit pull requests or report issues. Contributions are welcome! 
+
+#### License
 
 This project is licensed under the MIT License.
 
