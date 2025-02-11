@@ -54,18 +54,28 @@ $data = [
 $this->my_parser->parse('template_name', $data);
 ```
 
-Custom Filters
-Define and use custom filters in your templates. Example usage:
+Custom Filters 
+
+Define and use custom filters in your templates. 
+Example usage:
+
 ```{created_at|date:d-m-Y}```
 
 Upper
-Description: Converts text to uppercase. Template Example: ```{title|upper}``` Output: HELLO WORLD
 
-Lower
-Description: Converts text to lowercase. Template Example: ```{title|lower}``` Output: hello world
+Description: Converts text to uppercase. 
+Template Example: ```{title|upper}``` 
+Output: HELLO WORLD
+
+Lower 
+Description: Converts text to lowercase. 
+Template Example: ```{title|lower}``` 
+Output: hello world
 
 Capitalize
-Description: Capitalizes the first letter of each word. Template Example: ```{title|capitalize}``` Output: Hello World
+Description: Capitalizes the first letter of each word. 
+Template Example: ```{title|capitalize}``` 
+Output: Hello World
 
 Trim
 Description: Trims whitespace from both ends. Template Example: ```{title|trim}``` Output: Hello World
